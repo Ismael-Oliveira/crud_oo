@@ -11,7 +11,7 @@
 
         public function cadastrar($email, $nome=""){
 
-            if($email == " "){
+            if(!$this->emailExistente($email)){
                 return false;
             }
 
@@ -31,6 +31,44 @@
             $sql->bindParam(':email', $email);
             $sql->execute();
 
+            return true;
+        }
+
+        public function buscarUm($email){
+
+            $sql = 'SELECT idcontato, nome, email FROM contato WHERE email = ?';
+            $sql = $this->pdo->prepare($sql);
+            $sql->bindParam(1, $email);
+            $sql->execute();
+
+            if($sql->rowCount() > 0){
+                // retorna um array como resultado da pesquisa
+                return $sql->fetch();
+            }else{
+                return array();
+            }
+
+        }
+
+        public function buscarTodos(){
+
+            $sql = 'SELECT idcontato, nome, email FROM contato';
+            $sql = $this->pdo->prepare($sql);
+            $sql->execute();
+
+            if($sql->rowCount() > 0){
+                // retorna um array como resultado da pesquisa
+                return $sql->fetchAll();
+            }else{
+                return array();
+            }
+
+        }
+
+        private function emailExistente($email){
+            if($email == " "){
+                return false;
+            }
             return true;
         }
 
