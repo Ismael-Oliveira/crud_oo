@@ -65,6 +65,22 @@
 
         }
 
+        public function atualizar($email, $nome){
+
+            if(!$this->emailExistente($email)){
+                return false;
+            }
+
+            $sql = "UPDATE contato SET nome = ? WHERE email = ?";
+            $sql = $this->pdo->prepare($sql);
+            $sql->bindParam(1, $nome);
+            $sql->bindParam(2, $email);
+            $sql->execute();
+
+            return true;
+
+        }
+
         private function emailExistente($email){
             if($email == " "){
                 return false;

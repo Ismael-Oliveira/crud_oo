@@ -22,10 +22,18 @@
     // }
 
     // testando buscar todos
-    $resp = $contato->buscarTodos();
+    // $resp = $contato->buscarTodos();
+    // if($resp){
+    //     echo "<pre>";
+    //     print_r($resp);
+    // }else{
+    //     echo 'Não encontrou nenhum contato';
+    // }
+
+    // testando atualizar
+    $resp = $contato->atualizar("nana@gmail.com", 'nana');
     if($resp){
-        echo "<pre>";
-        print_r($resp);
+        echo "Atualizado com sucesso";
     }else{
         echo 'Não encontrou nenhum contato';
     }
