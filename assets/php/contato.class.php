@@ -77,8 +77,30 @@
             $sql->bindParam(2, $email);
             $sql->execute();
 
-            return true;
+            if($sql->rowCount() > 0){
+                return true;
+            }
+            
+            return false;
 
+        }
+
+        public function deletar($email){
+
+            if(!$this->emailExistente($email)){
+                return false;
+            }
+
+            $sql = "DELETE FROM contato WHERE email = ?";
+            $sql = $this->pdo->prepare($sql);
+            $sql->bindParam(1, $email);
+            $sql->execute();
+
+            if($sql->rowCount() > 0){
+                return true;
+            }
+           
+            return false;
         }
 
         private function emailExistente($email){

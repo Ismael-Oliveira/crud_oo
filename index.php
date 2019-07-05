@@ -31,10 +31,18 @@
     // }
 
     // testando atualizar
-    $resp = $contato->atualizar("nana@gmail.com", 'nana');
+    // $resp = $contato->atualizar("nana@gmail.com", 'nana');
+    // if($resp){
+    //     echo "Atualizado com sucesso";
+    // }else{
+    //     echo 'Não encontrou nenhum contato';
+    // }
+
+    // testando DELETAR
+    $resp = $contato->deletar("teste@gmail.com");
     if($resp){
-        echo "Atualizado com sucesso";
+        echo "Deletado com sucesso";
     }else{
-        echo 'Não encontrou nenhum contato';
+        echo 'Não encontrou nenhum contato para deletar';
     }
 ?>
