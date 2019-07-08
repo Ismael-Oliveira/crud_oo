@@ -2,6 +2,12 @@
     require('./assets/php/contato.class.php');
 
     $contato = new Contato();
+
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $resp = $contato->deletar($id);
+    }
+
     $contatoVazio = false;
 
     $resp = $contato->buscarTodos();
@@ -10,8 +16,11 @@
         $contatoVazio = true;
     }
 
+
 ?>
 
+
+<h1>Lista de contatos</h1>
 <a href="./assets/php/adicionar.php">[Adicionar]</a>
 <br><br>
 <table border='1' width="500">
@@ -30,7 +39,7 @@
                         <td><?php echo $value['email']?></td>
                         <td align="center">
                             <a href='./assets/php/editar.php?id=<?php echo $value['idcontato']?>'>[Editar]</a>
-                            <a href='./assets/php/deletar.php?id=<?php echo $value['idcontato']?>'>[Deletar]</a>    
+                            <a href='./?id=<?php echo $value['idcontato']?>'>[Deletar]</a>    
                         </td>
                         
                     </tr>

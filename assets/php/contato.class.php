@@ -85,15 +85,11 @@
 
         }
 
-        public function deletar($email){
+        public function deletar($id){
 
-            if(!$this->emailExistente($email)){
-                return false;
-            }
-
-            $sql = "DELETE FROM contato WHERE email = ?";
+            $sql = "DELETE FROM contato WHERE idcontato = ?";
             $sql = $this->pdo->prepare($sql);
-            $sql->bindParam(1, $email);
+            $sql->bindParam(1, $id);
             $sql->execute();
 
             if($sql->rowCount() > 0){
