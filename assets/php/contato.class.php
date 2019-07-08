@@ -15,6 +15,7 @@
                 return false;
             }
 
+            // verifica se já existe o email na base de dados
             $sql = 'SELECT email FROM contato WHERE email = ?';
             $sql = $this->pdo->prepare($sql);
             $sql->bindParam(1, $email);
