@@ -34,11 +34,11 @@
             return true;
         }
 
-        public function buscarUm($email){
+        public function buscarUm($id){
 
-            $sql = 'SELECT idcontato, nome, email FROM contato WHERE email = ?';
+            $sql = 'SELECT idcontato, nome, email FROM contato WHERE id = ?';
             $sql = $this->pdo->prepare($sql);
-            $sql->bindParam(1, $email);
+            $sql->bindParam(1, $id);
             $sql->execute();
 
             if($sql->rowCount() > 0){
@@ -65,16 +65,16 @@
 
         }
 
-        public function atualizar($email, $nome){
+        public function atualizar($id, $nome){
 
-            if(!$this->emailExistente($email)){
+            if(!$this->emailExistente($id)){
                 return false;
             }
 
-            $sql = "UPDATE contato SET nome = ? WHERE email = ?";
+            $sql = "UPDATE contato SET nome = ? WHERE id = ?";
             $sql = $this->pdo->prepare($sql);
             $sql->bindParam(1, $nome);
-            $sql->bindParam(2, $email);
+            $sql->bindParam(2, $id);
             $sql->execute();
 
             if($sql->rowCount() > 0){
